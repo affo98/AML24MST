@@ -8,3 +8,6 @@ soundfile
 librosa
 evaluate
 torchmetrics
+seaborn
+scikit-learn
+torchaudio
