@@ -1,3 +1,3 @@
 /data/
 ./venv/
-trained_model.pth
+*.pth
