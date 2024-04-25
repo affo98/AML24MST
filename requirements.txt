@@ -11,3 +11,4 @@ torchmetrics
 seaborn
 scikit-learn
 torchaudio
+warnings
