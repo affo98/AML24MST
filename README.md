@@ -19,5 +19,5 @@ Step 1: Download the GTZAN dataset from Kaggle using the following link:
 Step 2: Create train/test split data, and noise data by running the following:
 ```bash
 python create_train_test_data.py
-Run using: python3 create_noise_data.py
+python3 create_noise_data.py
 ```
