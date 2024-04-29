@@ -40,39 +40,33 @@ def create_train_test_data_noisy(SNR):
     """
     SNR defines signal to noise ratio. Lower SNR gives more noise.
     Requires a folder called data_train_test/. Run create_train_test_data.py to create that folder.
-    Saves train/test dataset with injected noise according to SNR in the folder data_noisy_train_test.
+    Saves ONLY train dataset with injected noise according to SNR in the folder data_noisy_train_test.
 
     Run using: python create_noise_data.py
     """
 
-    # Create directory for train and test data
-    data_noisy_train_test_path = "data_noisy_train_test"
-    train_path = os.path.join(data_noisy_train_test_path, "train")
-    test_path = os.path.join(data_noisy_train_test_path, "test")
+    # Create directory for train
+    data_noisy_train_path = "data_noisy_train"
+    train_path = os.path.join(data_noisy_train_path, "train")
 
     # remove folder if it already exists
-    if os.path.exists(data_noisy_train_test_path):
-        shutil.rmtree(data_noisy_train_test_path)
+    if os.path.exists(data_noisy_train_path):
+        shutil.rmtree(data_noisy_train_path)
 
     # Create the directories
     os.makedirs(train_path, exist_ok=True)
-    os.makedirs(test_path, exist_ok=True)
 
     # Create subdirectories inside train_path for each genre
     for genre_name in genre_names:
         genre_dir = os.path.join(train_path, genre_name)
         os.makedirs(genre_dir, exist_ok=True)
 
-    # Create subdirectories inside test_path for each genre
-    for genre_name in genre_names:
-        genre_dir = os.path.join(test_path, genre_name)
-        os.makedirs(genre_dir, exist_ok=True)
-
-    print(f"Directory {data_noisy_train_test_path} created successfully.")
+    print(f"Directory {data_noisy_train_path} created successfully.")
 
     # Looping over files in folder data_train_test/
     path = "./data_train_test/"
-    for set in ["train", "test"]:
+    # for set in ["train", "test"] - use if you want noisy test data aswell
+    for set in ["train"]:
         path_set = os.path.join(path, set)
         for genre_name in genre_names:
             # Construct full path to genre directory
@@ -88,7 +82,7 @@ def create_train_test_data_noisy(SNR):
                 # Construct full path to file
                 file_path = os.path.join(genre_dir, file_name)
                 file_save_path = os.path.join(
-                    data_noisy_train_test_path, set, genre_name, file_name
+                    data_noisy_train_path, set, genre_name, file_name
                 )
 
                 # Check if it's a file
@@ -107,7 +101,7 @@ def create_train_test_data_noisy(SNR):
                 else:
                     print(f"'{file_path}' is not a file.")
     print(
-        f"Succesfully created train/test noisy data in folder {data_noisy_train_test_path}"
+        f"Succesfully created train/test noisy data in folder {data_noisy_train_path}"
     )
 
 
