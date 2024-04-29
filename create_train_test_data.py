@@ -1,6 +1,8 @@
 import shutil
 import os
 
+from helper import genre_names
+
 
 def create_train_test_data():
     """
@@ -53,7 +55,11 @@ def create_train_test_data():
             # Check if it's a file
             if os.path.isfile(file_path):
                 # Determine destination directory based on condition
-                if i % 5 == 0:  # every fifth file is going to test
+                if file_name == "jazz.00054.wav":
+                    print(f"Removed {file_name} from dataset")
+                    continue
+
+                elif i % 5 == 0:  # every fifth file is going to test
                     destination = os.path.join(
                         os.path.join(test_path, genre_name), file_name
                     )
