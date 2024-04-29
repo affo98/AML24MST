@@ -1,3 +1,7 @@
+"""
+Inspiration from: https://medium.com/analytics-vidhya/adding-noise-to-audio-clips-5d8cee24ccb8
+"""
+
 import os
 import shutil
 import numpy as np
@@ -38,7 +42,7 @@ def create_train_test_data_noisy(SNR):
     Requires a folder called data_train_test/. Run create_train_test_data.py to create that folder.
     Saves train/test dataset with injected noise according to SNR in the folder data_noisy_train_test.
 
-    Run using: python3 create_noise_data.py
+    Run using: python create_noise_data.py
     """
 
     # Create directory for train and test data
@@ -107,6 +111,6 @@ def create_train_test_data_noisy(SNR):
     )
 
 
-__SNR__ = 5
+__SNR__ = 10  # changed 29 april by Anders
 if __name__ == "__main__":
     create_train_test_data_noisy(__SNR__)
