@@ -18,7 +18,7 @@ warnings.filterwarnings("ignore")
 def get_white_noise(signal, SNR):
     """
     SNR in dB
-    Given a signal and desired SNR, this gives the required Additive White Gaussian Noise (AWGN) what should be added to the signal to get the desired SNR.
+    Given a signal and desired SNR, this gives the required Additive White Gaussian Noise (AWGN) that should be added to the signal to get the desired SNR.
 
     Run using: python create_noise_data.py
     """
@@ -40,25 +40,35 @@ def create_train_test_data_noisy(SNR):
     """
     SNR defines signal to noise ratio. Lower SNR gives more noise.
     Requires a folder called data_train_test/. Run create_train_test_data.py to create that folder.
-    Saves ONLY train dataset with injected noise according to SNR in the folder data_noisy_train_test.
+    Saves train dataset with injected noise according to SNR in the folder data_noisy_train_test.
+    Also copies over original training files. So the folder contains original train data + noisy train data.
+    Also copies over original test data.
+    Does not inject noise into the test dataset.
 
     Run using: python create_noise_data.py
     """
 
     # Create directory for train
-    data_noisy_train_path = "data_noisy_train"
+    data_noisy_train_path = "data_noisy_train_test"
     train_path = os.path.join(data_noisy_train_path, "train")
+    test_path = os.path.join(data_noisy_train_path, "test")
 
-    # remove folder if it already exists
+    # remove root folder if it already exists
     if os.path.exists(data_noisy_train_path):
         shutil.rmtree(data_noisy_train_path)
 
-    # Create the directories
+    # Create the directories for train and test
     os.makedirs(train_path, exist_ok=True)
+    os.makedirs(test_path, exist_ok=True)
 
     # Create subdirectories inside train_path for each genre
     for genre_name in genre_names:
         genre_dir = os.path.join(train_path, genre_name)
+        os.makedirs(genre_dir, exist_ok=True)
+
+    # Create subdirectories inside train_path for each genre
+    for genre_name in genre_names:
+        genre_dir = os.path.join(test_path, genre_name)
         os.makedirs(genre_dir, exist_ok=True)
 
     print(f"Directory {data_noisy_train_path} created successfully.")
@@ -66,7 +76,7 @@ def create_train_test_data_noisy(SNR):
     # Looping over files in folder data_train_test/
     path = "./data_train_test/"
     # for set in ["train", "test"] - use if you want noisy test data aswell
-    for set in ["train"]:
+    for set in ["train", "test"]:
         path_set = os.path.join(path, set)
         for genre_name in genre_names:
             # Construct full path to genre directory
@@ -81,28 +91,47 @@ def create_train_test_data_noisy(SNR):
             for file_name in os.listdir(genre_dir):
                 # Construct full path to file
                 file_path = os.path.join(genre_dir, file_name)
+
                 file_save_path = os.path.join(
                     data_noisy_train_path, set, genre_name, file_name
                 )
 
-                # Check if it's a file
-                if os.path.isfile(file_path):
-                    try:
-                        signal, sr = librosa.load(
-                            file_path
-                        )  # load file into signal and sampling_rate
-                        noise = get_white_noise(signal, SNR)  # generate noise,
-                        signal_noise = signal + noise
-                        sf.write(file_save_path, signal_noise, sr)
-                    except Exception:
-                        print(f"Could not load {file_name}")
-                        continue
+                if set == "train":
+                    noisy_file_name = f"noisy_{file_name}"  # Append 'noisy_' to the beginning of the file name
 
-                else:
-                    print(f"'{file_path}' is not a file.")
-    print(
-        f"Succesfully created train/test noisy data in folder {data_noisy_train_path}"
-    )
+                    file_save_path_noisy = os.path.join(
+                        data_noisy_train_path, set, genre_name, noisy_file_name
+                    )
+
+                    # Check if it's a file
+                    if os.path.isfile(file_path):
+                        try:
+                            signal, sr = librosa.load(
+                                file_path
+                            )  # load file into signal and sampling_rate
+                            noise = get_white_noise(signal, SNR)  # generate noise,
+                            signal_noise = signal + noise
+                            sf.write(file_save_path_noisy, signal_noise, sr)
+                            shutil.copy(file_path, file_save_path)
+
+                        except Exception:
+                            print(f"Could not load {file_name}")
+                            continue
+
+                    else:
+                        print(f"'{file_path}' is not a file.")
+
+                elif (
+                    set == "test"
+                ):  # Just copy test files, dont create noisy test-files
+                    # Check if it's a file
+                    if os.path.isfile(file_path):
+                        shutil.copy(file_path, file_save_path)
+
+                    else:
+                        print(f"'{file_path}' is not a file.")
+
+    print(f"Succesfully created train noisy data in folder {data_noisy_train_path}")
 
 
 __SNR__ = 10  # changed 29 april by Anders
