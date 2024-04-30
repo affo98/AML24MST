@@ -6,15 +6,18 @@ from helper import genre_names
 
 def create_train_test_data():
     """
-    Requires the GTZAN dataset; download from kaggle and place in directory ./data/. https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
-    Makes a train/test split stratified by genre, and save the files in a new folder named /data_train_test/.
+    Requires the GTZAN dataset; download from kaggl
+    e and place in directory ./data/. https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
+    Makes a train/val/test split stratified by genre, and save the files in a new folder named /data_train_test/.
 
-    Run using: python create_train_test_data.py
+    Run using: python create_train_val_test_data.py
     """
-    # Create directory for train and test data
-    data_train_test_path = "data_train_test"
+
+    # Create directory for train, val and test data
+    data_train_test_path = "data_train_val_test"
     train_path = os.path.join(data_train_test_path, "train")
     test_path = os.path.join(data_train_test_path, "test")
+    val_path = os.path.join(data_train_test_path, "val")
 
     # remove folder if it already exists
     if os.path.exists(data_train_test_path):
@@ -23,6 +26,7 @@ def create_train_test_data():
     # Create the directories
     os.makedirs(train_path, exist_ok=True)
     os.makedirs(test_path, exist_ok=True)
+    os.makedirs(val_path, exist_ok=True)
 
     # Create subdirectories inside train_path for each genre
     for genre_name in genre_names:
@@ -32,6 +36,11 @@ def create_train_test_data():
     # Create subdirectories inside test_path for each genre
     for genre_name in genre_names:
         genre_dir = os.path.join(test_path, genre_name)
+        os.makedirs(genre_dir, exist_ok=True)
+
+    # Create subdirectories inside val for each genre
+    for genre_name in genre_names:
+        genre_dir = os.path.join(val_path, genre_name)
         os.makedirs(genre_dir, exist_ok=True)
 
     print(f"Directory {data_train_test_path} created successfully.")
@@ -59,10 +68,16 @@ def create_train_test_data():
                     print(f"Removed {file_name} from dataset")
                     continue
 
+                elif i % 5 == 4:  # every fifth file is going to val
+                    destination = os.path.join(
+                        os.path.join(val_path, genre_name), file_name
+                    )
+
                 elif i % 5 == 0:  # every fifth file is going to test
                     destination = os.path.join(
                         os.path.join(test_path, genre_name), file_name
                     )
+
                 else:  # otherwise to to train
                     destination = os.path.join(
                         os.path.join(train_path, genre_name), file_name
@@ -73,7 +88,7 @@ def create_train_test_data():
 
             else:
                 print(f"'{file_path}' is not a file.")
-    print(f"Succesfully created train/test data in folder {data_train_test_path}")
+    print(f"Succesfully created train/val/test data in folder {data_train_test_path}")
 
 
 if __name__ == "__main__":

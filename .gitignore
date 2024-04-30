@@ -1,6 +1,6 @@
 /data/
-/data_train_test/
-/data_noisy_train_test/
+/data_train_val_test/
+/data_noisy_train_val_test/
 ./venv/
 data/
 hubert-10-genres/
