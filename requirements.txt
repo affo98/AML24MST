@@ -1,0 +1,15 @@
+pandas
+numpy
+matplotlib
+transformers
+torch 
+datasets
+soundfile
+librosa
+evaluate
+torchmetrics
+seaborn
+scikit-learn
+torchaudio
+warnings
+wandb

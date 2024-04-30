@@ -1,3 +1,7 @@
+/data/
+/data_train_test/
+/data_noisy_train/
+./venv/
 data/
 hubert-10-genres/
 wandb/
