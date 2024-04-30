@@ -81,7 +81,6 @@ def create_train_test_data_noisy(SNR):
 
     # Looping over files in folder data_train_test/
     path = "./data_train_val_test/"
-    # for set in ["train", "test"] - use if you want noisy test data aswell
     for set in ["train", "val", "test"]:
         path_set = os.path.join(path, set)
         for genre_name in genre_names:
