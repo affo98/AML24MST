@@ -2,3 +2,6 @@
 /data_train_test/
 /data_noisy_train_test/
 ./venv/
+data/
+hubert-10-genres/
+wandb/
