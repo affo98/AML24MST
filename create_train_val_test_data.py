@@ -2,6 +2,8 @@ import shutil
 import os
 import re
 
+from helper import genre_names
+
 
 def create_train_test_data():
     """
@@ -67,12 +69,16 @@ def create_train_test_data():
                     print(f"Removed {file_name} from dataset")
                     continue
 
-                elif int(re.findall(r'\d+', file_name)[0]) % 5 == 4:  # every fifth file is going to val
+                elif (
+                    int(re.findall(r"\d+", file_name)[0]) % 5 == 4
+                ):  # every fifth file is going to val
                     destination = os.path.join(
                         os.path.join(val_path, genre_name), file_name
                     )
 
-                elif int(re.findall(r'\d+', file_name)[0]) % 5 == 0:  # every fifth file is going to test
+                elif (
+                    int(re.findall(r"\d+", file_name)[0]) % 5 == 0
+                ):  # every fifth file is going to test
                     destination = os.path.join(
                         os.path.join(test_path, genre_name), file_name
                     )

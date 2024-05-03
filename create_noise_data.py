@@ -139,6 +139,6 @@ def create_train_test_data_noisy(SNR):
     print(f"Succesfully created train noisy data in folder {data_noisy_train_path}")
 
 
-__SNR__ = 10  # changed 29 april by Anders
+__SNR__ = 10  # changed 29 april by Anderss
 if __name__ == "__main__":
     create_train_test_data_noisy(__SNR__)
