@@ -1,6 +1,14 @@
 # AML24MST
 Mini Project: Music Segmentation Task 
 
+## Data and Objective
+
+## Methods
+
+## Key Experiments and Results
+
+## Discussion
+
 ## Installation
 Clone or download this repository and set it as the working directory, create a virtual environment and install the dependencies.
 
@@ -21,3 +29,8 @@ Step 2: Create train/test split data, and noise data by running the following:
 python create_train_val_test_data.py
 python create_noise_data.py
 ```
+
+## Group Members
+Anders Hjulmand: ahju@itu.dk
+Eisuke Okuda: eiok@itu.dk  
+Andreas Flensted: frao@itu.dk
