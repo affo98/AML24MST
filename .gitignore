@@ -5,3 +5,5 @@
 data/
 hubert-10-genres/
 wandb/
+data_train_val_test/
+data_noisy_train_val_test/
