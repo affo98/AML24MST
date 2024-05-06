@@ -74,6 +74,8 @@ There was a big difference in the performance across genres. Classical- and jazz
 
 While listening to some of the songs that were misclassified by all of the models we realized that we too could not classify the genre of the audio file. See for example [this rock song](https://jumpshare.com/s/VVWPKtGIc0Pn8y5wtkth). This states that music genres are not "hard labels" like cats or dogs, but are ambigious and might depend on the knowledge and the music taste of the listener.
 
+To improve the evalution of the model performance, future work would leverage another music genre dataset to identify the impact of the noisy and generated training examples on unseen audio data.
+
 ## Installation
 Clone or download this repository and set it as the working directory, create a virtual environment and install the dependencies.
 
