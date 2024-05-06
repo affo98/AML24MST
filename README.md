@@ -15,12 +15,12 @@ We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-
 
 The main goals of the project is to:
 
-1. Compare the performance of different pre-processing options (raw waveform vs. spectograms). 
-2. Compare different model architectures: spectogram CNN vs. transformers.
-3. Examine whether including noisy- and generated data as training examples improves the performance of the models.
+1. Evaluate the performance of different pre-processing options for audio data (raw waveform vs. spectrograms). 
+2. Evaluate the performance of different model architectures: ResNet vs. Transformers.
+3. Evaluate the robustness of model performance by exposing noisy- and generated audio data as training examples.
 
 
-Spectograms of a single song from the 10 genres are shown in the figure below. 
+Mel Spectrograms of a single song from the 10 genres are shown in the figure below. 
 ![](figures/ast_spectograms.png)
 
 
