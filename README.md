@@ -45,7 +45,7 @@ Accuracy scores are shown in the table below.
 | Baseline + Generated data | .686   | .755   | .795   |
 
 
-![](figures/confusion_plot_baseline.png)
+![](figures/confusion_plot_baseline.png){:width="300px"}
 *Figure 1: Confusion Matrix for AST with baseline data*
 
 
