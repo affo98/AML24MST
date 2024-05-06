@@ -25,11 +25,25 @@ We fine-tune three pre-trained model architectures.
 
 We examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
 
-We add Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples. 
+We create noisy training data by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples.
+
+We generate ...  
+
+
+
+ROC-AUC scores are shown in the table below. 
+|          | Baseline data | Baseline + Noise data | Baseline + Generated data |
+|----------|----------|----------|----------|
+| CNN    | Data 1   | Data 2   | Data 3   |
+| AST    | Data 4   | Data 5   | Data 6   |
+| Hubert    | Data 7   | Data 8   | Data 9   |
 
 
 
 ## Discussion
+
+
+
 
 ## Installation
 Clone or download this repository and set it as the working directory, create a virtual environment and install the dependencies.
