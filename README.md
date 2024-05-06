@@ -71,7 +71,7 @@ There was a big difference in the performance across genres. Classical- and jazz
 
 From the PCA-figure we note that the misclassified songs were generally placed in regions of the latent space with a lot of overlap between genres. The clusters that were more distinct (e.g. classical and metal) had no misclassifications. 
 
-While listening to some of the songs that were misclassified by all the models we realized that we could not even agree on the genre of the song. See for example [this rock song][https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification)](https://jumpshare.com/s/VVWPKtGIc0Pn8y5wtkth). Music genres are inherently not a "hard label", but might depend on the knowledge and the musical taste of the listener.
+While listening to some of the songs that were misclassified by all the models we realized that we could not even agree on the genre of the song. See for example [this rock song](https://jumpshare.com/s/VVWPKtGIc0Pn8y5wtkth). Music genres are not "hard labels" like cats or dogs, but are ambigious and might depend on the knowledge and the musical taste of the listener.
 
 
 ## Installation
