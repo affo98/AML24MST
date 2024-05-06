@@ -40,7 +40,7 @@ We examine whether augmenting the training data with noisy and generated music p
 
 The noisy training data was created by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original data. The noisy data was added to the train and validation sets which doubled the number of training examples. Noisy audio data was *not* added to the test set.
 
-We generate 1000 artificial audios using [Mistral-7b](https://huggingface.co/mistralai/Mistral-7B-v0.1), to generate p number of prompts, which was then fed to TextToMusicGenerating [MusicGen](https://huggingface.co/spaces/facebook/MusicGen), which resulted in 800 additional training examples and 200 validation examples. Generated audio data was *not* added to the test set.
+We generated 1000 artificial audios using [Mistral-7b](https://huggingface.co/mistralai/Mistral-7B-v0.1), to generate 50 prompts, which was then fed to TextToMusicGenerating [MusicGen](https://huggingface.co/spaces/facebook/MusicGen), which resulted in 800 additional training examples and 200 validation examples. Generated audio data was *not* added to the test set.
 
 
 ## Key Experiments and Results
