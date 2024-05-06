@@ -29,7 +29,7 @@ We fine-tune 3 pre-trained model architectures to classify music genres;
 
 1. ResNet50 - [Paper](https://arxiv.org/abs/1512.03385): Finetuning the ResNet50 architecture trained on ImageNet to use for feature extraction as well as an inserted convolutional layer at the beginning and a Multi Layer Perceptron at the end. The models were trained using mel spectrograms with a learning rate of 1e-4 for 20 epochs with an early stopping criterion.
 2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): is an attention-based vision transformer model used for audio classification. The input to the model is a mel spectogram, that is projected onto an embedding space, after which a vision transformer encoder is applied. We use a model pretrained on the [AudioSet](https://research.google.com/audioset/) consisting on a variety of audio classes including music and speech. This corresponds to the 1st model on the [GitHub from the original paper](https://github.com/YuanGongND/ast/tree/master?tab=readme-ov-file). We finetuned the model using a learning rate of 5e-5 for 15 epochs and based the model selection on the validation accuracy. 
-3. Hubert - [Paper](https://arxiv.org/abs/2106.07447):
+3. Hubert - [Paper](https://arxiv.org/abs/2106.07447): is a self-supervised approach for speech representation learning. HuBERT uses an offline clustering step to provide aligned target labels for a BERT-like prediction loss. The prediction loss is applied only over the masked regions, forcing the model to learn a combined acoustic and language model over the continuous inputs. The models were finetuned with a learning rate 5e-5 for 10 epochs.
 
 
 *All models were trained using Kaggle Notebooks with 2x GPU T4, 4 CPU, and 16 GB RAM.*
@@ -40,7 +40,7 @@ We examine whether augmenting the training data with noisy and generated music p
 
 The noisy training data was created by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original data. The noisy data was added to the train and validation sets which doubled the number of training examples. Noisy audio data was *not* added to the test set.
 
-We generate [EISUKE ADD]  x number of songs using [model](url), to generate p number of prompts, which was then fed to TextToMusicGenerating [model](url), which resulted in m number of additional training examples and k number of validation examples. Generated audio data was *not* added to the test set.
+We generate 1000 artificial audios using [Mistral-7b](https://huggingface.co/mistralai/Mistral-7B-v0.1), to generate p number of prompts, which was then fed to TextToMusicGenerating [MusicGen](https://huggingface.co/spaces/facebook/MusicGen), which resulted in 800 additional training examples and 200 validation examples. Generated audio data was *not* added to the test set.
 
 
 ## Key Experiments and Results
