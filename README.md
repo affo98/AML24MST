@@ -19,6 +19,11 @@ The main goals of the project is to:
 2. Compare different model architectures: spectogram CNN vs. transformers.
 3. Examine whether including noisy- and generated data as training examples improves the robustness of the models.
 
+
+Spectograms of a single song from the 10 genres are shown in the figure below. 
+![](figures/ast_spectograms.png)
+
+
 ## Methods
 
 We fine-tune three pre-trained model architectures to classify music genres in the GTZAN:
