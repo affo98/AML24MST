@@ -1,6 +1,12 @@
 # AML24MST
 This is the reposirory for the mini-project in Advanced Machine Learning 2024 at IT-University of Copenhagen.
 
+## Group Members
+Anders Hjulmand: ahju@itu.dk
+
+Eisuke Okuda: eiok@itu.dk  
+
+Andreas Flensted: frao@itu.dk
 
 ## Data and Objective
 The objective of this project is to build a classifier that can tag pieces of music with a genre. 
@@ -26,14 +32,12 @@ We fine-tune three pre-trained model architectures to classify music genres in t
 
 We examine whether augmenting the training data with noisy and generated music pieces improves the performance.
 
-
 We create noisy training data by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples.
 
 We generate ...  
 
 
-
-ROC-AUC scores are shown in the table below. 
+Accuracy scores are shown in the table below. 
 |          | ResNet | AST | HuBERT |
 |----------|----------|----------|----------|
 | Baseline data             | .692   | .775   | .795   |
@@ -41,8 +45,13 @@ ROC-AUC scores are shown in the table below.
 | Baseline + Generated data | .686   | .755   | .795   |
 
 
+![](figures/confusion_plot_baseline.png)
+*Figure 1: Confusion Matrix for AST with baseline data*
+
 
 ## Discussion
+
+
 
 
 
@@ -68,9 +77,15 @@ python create_train_val_test_data.py
 python create_noise_data.py
 ```
 
-## Group Members
-Anders Hjulmand: ahju@itu.dk
+## Fine-tune models
 
-Eisuke Okuda: eiok@itu.dk  
+After creating the datasets, the following notebooks can br run to fine-tune the models:
 
-Andreas Flensted: frao@itu.dk
+* transfer_CNN.ipynb
+* finetune_ast.ipynb
+* hubert.ipynb
+
+
+
+
+
