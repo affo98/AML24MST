@@ -34,11 +34,11 @@ We generate ...
 
 
 ROC-AUC scores are shown in the table below. 
-|          | Baseline data | Baseline + Noise data | Baseline + Generated data |
+|          | ResNet | AST | HuBERT |
 |----------|----------|----------|----------|
-| CNN    | Data 1   | Data 2   | Data 3   |
-| AST    | Data 4   | Data 5   | Data 6   |
-| Hubert    | Data 7   | Data 8   | Data 9   |
+| Baseline data             | .692   | .775   | .795   |
+| Baseline + Noise data     | .705   | .740   | .780   |
+| Baseline + Generated data | .686   | .755   | .795   |
 
 
 
