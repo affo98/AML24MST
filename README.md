@@ -14,8 +14,6 @@ The main goals of the project is to:
 
 ## Methods
 
-### Models
-
 We fine-tune three pre-trained model architectures.
 
 1. CNN
@@ -25,8 +23,9 @@ We fine-tune three pre-trained model architectures.
 
 ## Key Experiments and Results
 
-In addition to comparing the 3 fine-tuned models, we examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
+We examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
 
+We add Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples. 
 
 
 
