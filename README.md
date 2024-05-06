@@ -17,8 +17,9 @@ The main goals of the project is to:
 We fine-tune three pre-trained model architectures.
 
 1. CNN
-2. Audio Spectogram Transformer (AST) which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied. See [Paper](https://arxiv.org/abs/2104.01778).
-3. Hubert:
+2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied.
+
+4. Hubert - [Paper](https://arxiv.org/abs/2106.07447): https://arxiv.org/abs/2106.07447
 
 
 ## Key Experiments and Results
