@@ -37,7 +37,8 @@ We create noisy training data by adding Additive White Gaussian Noise (AWGN) wit
 We generate ...  
 
 
-Accuracy scores are shown in the table below. 
+Accuracy scores are shown in the table below.  
+
 |          | ResNet | AST | HuBERT |
 |----------|----------|----------|----------|
 | Baseline data             | .692   | .775   | .795   |
@@ -45,8 +46,14 @@ Accuracy scores are shown in the table below.
 | Baseline + Generated data | .686   | .755   | .795   |
 
 
-![](figures/confusion_plot_baseline.png){:width="300px"}
-*Figure 1: Confusion Matrix for AST with baseline data*
+The figure below shows the confusion Matrix for the AST model fine-tuned on baseline data.
+![](figures/confusion_plot_baseline.png)
+
+
+The figure below plots the first two principal components of all the songs in the original dataset. Large songs indicates test-set songs that were misclassified by all 9 models. 
+![](figures/pca_plot_misclassified.png)
+
+
 
 
 ## Discussion
@@ -76,6 +83,10 @@ Step 2: Create train/test split data, and noise data by running the following:
 python create_train_val_test_data.py
 python create_noise_data.py
 ```
+
+Step 3:
+
+Create generated data by running the notebook MusicGen.ipynb.
 
 ## Fine-tune models
 
