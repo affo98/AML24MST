@@ -11,7 +11,7 @@ Andreas Flensted: frao@itu.dk
 ## Data and Objective
 The objective of this project is to build a classifier that can tag pieces of music with a genre. 
 
-We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) which is the most-used public dataset for evaluating music genre recognition in machine learning. The dataset consists of 10 genres with 100 audio files of 30 second each. For each genre, the data is split into training (60), validation (20), and test (20).
+We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) that with its 1000 songs evenly spread across 10 different genres in both raw audio and Mel Spectrogram image format, is the most-used public dataset for evaluating music genre recognition. This project leverages the raw audio files each of 30 seconds duration. For each of the genres, the data is split into training (60), validation (20), and test (20) set.
 
 The main goals of the project is to:
 
