@@ -26,21 +26,26 @@ Spectograms of a single song from the 10 genres are shown in the figure below.
 
 ## Methods
 
+### Models
+
 We fine-tune three pre-trained model architectures to classify music genres in the GTZAN:
 
-1. CNN - [Paper](url): 
+1. CNN - [Paper](url): [ANDREAS ADD]  
 2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied. We use a model pretrained on the [AudioSet](https://research.google.com/audioset/) consisting on a variety of audio classes including music and speech. This corresponds to the 1st model on the [GitHub from ](https://github.com/YuanGongND/ast/tree/master?tab=readme-ov-file). A learning rate of 5e-5 for fine-tuning. 
-4. Hubert - [Paper](https://arxiv.org/abs/2106.07447): 
+3. Hubert - [Paper](https://arxiv.org/abs/2106.07447): 
 
-
-## Key Experiments and Results
+### Data Augmentation
 
 We examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
 
 We create noisy training data by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples.
 
-We generate ...  
+We generate [EISUKE ADD]  
 
+
+## Key Experiments and Results
+
+We created 9 models in total, with combinations from the 3 models and 3 training-sets.
 
 Accuracy scores are shown in the table below.  
 
@@ -101,7 +106,7 @@ Step 3: Create generated data by running the notebook MusicGen.ipynb.
 
 After creating the datasets, the following notebooks can br run to fine-tune the models:
 
-* transfer_CNN.ipynb
+* gtzan_resnet50.ipynb
 * finetune_ast.ipynb
 * hubert.ipynb
 
