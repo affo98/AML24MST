@@ -11,11 +11,11 @@ Andreas Flensted: frao@itu.dk
 ## Data and Objective
 The objective of this project is to build a classifier that can tag pieces of music with a genre. 
 
-We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) that with its 1000 songs evenly spread across 10 different genres in both raw audio and Mel Spectrogram image format, is the most-used public dataset for evaluating music genre recognition. This project leverages the raw audio files each of 30 seconds duration. For each of the genres, the data is split into training (60), validation (20), and test (20) set.
+We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) that with its 1000 songs evenly spread across 10 different genres in both raw audio and Mel Spectrogram image format, is the most-used public dataset for evaluating music genre recognition. This project leverages the raw audio files each of 30 seconds duration. For each of the genres, the data is split into training (60), validation (20), and test (20) set - referenced as baseline data.
 
 The main goals of the project is to:
 
-1. Evaluate the performance of different pre-processing options for audio data (raw waveform vs. spectrograms). 
+1. Evaluate the performance of using raw waveform and spectrograms as pre-processing methods to represent the audio signal.
 2. Evaluate the performance of different model architectures: ResNet vs. Transformers.
 3. Evaluate the robustness of model performance by exposing noisy- and generated audio data as training examples.
 
@@ -23,29 +23,29 @@ The main goals of the project is to:
 Mel Spectrograms of a single song from the 10 genres are shown in the figure below. 
 ![](figures/ast_spectograms.png)
 
+## Models
 
-## Methods
+We fine-tune 3 pre-trained model architectures to classify music genres;
 
-### Models
+1. ResNet50 - [Paper](https://arxiv.org/abs/1512.03385): Finetuning the ResNet50 architecture trained on ImageNet to use for feature extraction as well as an inserted convolutional layer at the beginning and a Multi Layer Perceptron at the end. The models were trained using mel spectrograms with a learning rate of 1e-4 for 20 epochs with an early stopping criterion.
+2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): is an attention-based vision transformer model used for audio classification. The input to the model is a mel spectogram, that is projected onto an embedding space, after which a vision transformer encoder is applied. We use a model pretrained on the [AudioSet](https://research.google.com/audioset/) consisting on a variety of audio classes including music and speech. This corresponds to the 1st model on the [GitHub from the original paper](https://github.com/YuanGongND/ast/tree/master?tab=readme-ov-file). We finetuned the model using a learning rate of 5e-5 for 15 epochs and based the model selection on the validation accuracy. 
+3. Hubert - [Paper](https://arxiv.org/abs/2106.07447):
 
-We fine-tune three pre-trained model architectures to classify music genres in the GTZAN:
 
-1. CNN - [Paper](url): [ANDREAS ADD]  
-2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied. We use a model pretrained on the [AudioSet](https://research.google.com/audioset/) consisting on a variety of audio classes including music and speech. This corresponds to the 1st model on the [GitHub from ](https://github.com/YuanGongND/ast/tree/master?tab=readme-ov-file). A learning rate of 5e-5 for fine-tuning. 
-3. Hubert - [Paper](https://arxiv.org/abs/2106.07447): 
+*All models were trained using Kaggle Notebooks with 2x GPU T4, 4 CPU, and 16 GB RAM.*
 
-### Data Augmentation
+## Data Augmentation
 
-We examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
+We examine whether augmenting the training data with noisy and generated music pieces improves the performance, or if any of the architectures performance's are sensitive to the exposure of noisy or generated data during training.
 
-We create noisy training data by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples.
+The noisy training data was created by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original data. The noisy data was added to the train and validation sets which doubled the number of training examples. Noisy audio data was *not* added to the test set.
 
-We generate [EISUKE ADD]  
+We generate [EISUKE ADD]  x number of songs using [model](url), to generate p number of prompts, which was then fed to TextToMusicGenerating [model](url), which resulted in m number of additional training examples and k number of validation examples. Generated audio data was *not* added to the test set.
 
 
 ## Key Experiments and Results
 
-We created 9 models in total, with combinations from the 3 models and 3 training-sets.
+The combination of 3 architechtures and 3 training-sets resulted in 9 different models.
 
 Accuracy scores are shown in the table below.  
 
@@ -60,24 +60,19 @@ The figure below shows the confusion Matrix for the AST model fine-tuned on base
 ![](figures/confusion_plot_baseline_ast.png)
 
 
-The figure below plots the first two principal components of all the songs in the original dataset. Large points indicates test-set songs that were misclassified by all 9 models. 
+The figure below plots the first two principal components of all the songs in the baseline dataset using the features provided in the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification). Large points represent test set songs that were misclassified by all 9 models. We note that the misclassified songs were generally placed in regions of the latent space with a lot of overlap between genres. The clusters that were more distinct (e.g. classical and metal) had no misclassifications. 
 ![](figures/pca_plot_misclassified.jpg)
 
 
 ## Discussion
 
-In relation to the main goals we conclude the following:
+1. The model that uses raw waveforms as input (HuBERT) has overall better accuracy than the models that uses mel-spectrograms (AST and ResNet50).
+2. The transformer models (HuBERT and AST) have better accuracy than the CNN model (ResNet50).
+3. Adding noise data to the ResNet50 model improves accuracy slightly (+ .013 from baseline). Neither noisy- or generated data improved the performance of the AST. Generated data achieved the same accuracy as baseline data in the HuBERT model. None of the models had large decrease in accuracy when trained noisy or generated audio files. This alludes to the models learning feature representations that are not only artifacts of the GTZAN data but could be applied to new test sets.
 
-1. The model that uses raw waveforms as input (HuBERT) has overall better accuracy than the models that uses mel-spectograms (AST and ResNet).
-2. The transformer models (HuBERT and AST) have better accuracy than the CNN model (ResNet).
-3. For the ResNet model, the adding noise data improces accuracy slightly (+ .013 from baseline). Neither noisy- or generated data improved the performance of the AST. Generated data archieved the same accuracy as baseline data in the HuBERT model. 
+There was a big difference in the performance across genres. Classical- and jazz music was easier for the models to classify correctly, whereas disco and rock genres were more often misclassified. When adding noisy data to the training data of the ResNet50 architechture, the correctly classified rock songs increased from 1 to 12. This raises the question of whether supervised music tagging methods could benefit from genre based pipelines. 
 
-There was a big difference in the performance across genres. Classical- and jazz music was easier for the models to classify correctly, whereas disco and rock genres were more often misclassified. 
-
-From the PCA-figure we note that the misclassified songs were generally placed in regions of the latent space with a lot of overlap between genres. The clusters that were more distinct (e.g. classical and metal) had no misclassifications. 
-
-While listening to some of the songs that were misclassified by all the models we realized that we could not even agree on the genre of the song. See for example [this rock song](https://jumpshare.com/s/VVWPKtGIc0Pn8y5wtkth). Music genres are not "hard labels" like cats or dogs, but are ambigious and might depend on the knowledge and the musical taste of the listener.
-
+While listening to some of the songs that were misclassified by all of the models we realized that we too could not classify the genre of the audio file. See for example [this rock song](https://jumpshare.com/s/VVWPKtGIc0Pn8y5wtkth). This states that music genres are not "hard labels" like cats or dogs, but are ambigious and might depend on the knowledge and the music taste of the listener.
 
 ## Installation
 Clone or download this repository and set it as the working directory, create a virtual environment and install the dependencies.
@@ -104,9 +99,9 @@ Step 3: Create generated data by running the notebook MusicGen.ipynb.
 
 ## Fine-tune models
 
-After creating the datasets, the following notebooks can br run to fine-tune the models:
+After creating the datasets, the following notebooks can be run to fine-tune the models:
 
-* gtzan_resnet50.ipynb
+* GTZAN_RESNET50.ipynb
 * finetune_ast.ipynb
 * hubert.ipynb
 
