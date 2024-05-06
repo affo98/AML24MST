@@ -6,18 +6,29 @@ The objective of this project is to build a classifier that can tag pieces of mu
 
 We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) which is the most-used public dataset for evaluating music genre recognition in machine learning. The dataset consists of 10 genres with 100 audio files of 30 second each.
 
-The main of the project is to:
+The main goals of the project is to:
 
 1. Compare the performance of different pre-processing options (raw waveform vs. spectograms). 
-2. Compare different model architectures: spectogram CNN vs. spectogram Vision Transformer.
+2. Compare different model architectures: spectogram CNN vs. transformers.
 3. Examine whether including noisy- and generated data as training examples improves the robustness of the models.
 
 ## Methods
 
+### Models
 
+We fine-tune three pre-trained model architectures.
+
+1. CNN
+2. Audio Spectogram Transformer (AST) which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied. See [Paper](https://arxiv.org/abs/2104.01778).
+3. Hubert:
 
 
 ## Key Experiments and Results
+
+In addition to comparing the 3 fine-tuned models, we examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
+
+
+
 
 ## Discussion
 
