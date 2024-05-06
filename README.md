@@ -2,8 +2,20 @@
 Mini Project: Music Segmentation Task 
 
 ## Data and Objective
+The objective of this project is to build a classifier that can tag pieces of music with a genre. 
+
+We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) which is the most-used public dataset for evaluating music genre recognition in machine learning. The dataset consists of 10 genres with 100 audio files of 30 second each.
+
+The main of the project is to:
+
+1. Compare the performance of different pre-processing options (raw waveform vs. spectograms). 
+2. Compare different model architectures: spectogram CNN vs. spectogram Vision Transformer.
+3. Examine whether including noisy- and generated data as training examples improves the robustness of the models.
 
 ## Methods
+
+
+
 
 ## Key Experiments and Results
 
@@ -32,5 +44,7 @@ python create_noise_data.py
 
 ## Group Members
 Anders Hjulmand: ahju@itu.dk
+
 Eisuke Okuda: eiok@itu.dk  
+
 Andreas Flensted: frao@itu.dk
