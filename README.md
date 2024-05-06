@@ -51,7 +51,7 @@ The figure below shows the confusion Matrix for the AST model fine-tuned on base
 
 
 The figure below plots the first two principal components of all the songs in the original dataset. Large songs indicates test-set songs that were misclassified by all 9 models. 
-![](figures/pca_plot_misclassified.png)
+![](figures/pca_plot_misclassified.jpg)
 
 
 
