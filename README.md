@@ -1,5 +1,6 @@
 # AML24MST
-Mini Project: Music Segmentation Task 
+Thie repository code for the mini-project in Advanced Machine Learning 2024 at IT-University of COpenhagen.
+
 
 ## Data and Objective
 The objective of this project is to build a classifier that can tag pieces of music with a genre. 
@@ -18,7 +19,7 @@ We fine-tune three pre-trained model architectures.
 
 1. CNN
 2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied.
-4. Hubert - [Paper](https://arxiv.org/abs/2104.01778): https://arxiv.org/abs/2106.07447
+4. Hubert - [Paper](https://arxiv.org/abs/2106.07447): 
 
 
 ## Key Experiments and Results
