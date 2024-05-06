@@ -1,5 +1,5 @@
 # AML24MST
-Thie repository code for the mini-project in Advanced Machine Learning 2024 at IT-University of Copenhagen.
+This is the reposirory for the mini-project in Advanced Machine Learning 2024 at IT-University of Copenhagen.
 
 
 ## Data and Objective
