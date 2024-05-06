@@ -24,7 +24,8 @@ We fine-tune three pre-trained model architectures to classify music genres in t
 
 ## Key Experiments and Results
 
-We examine whether augmenting the training data with noisy and generated music pieces improves the performance. 
+We examine whether augmenting the training data with noisy and generated music pieces improves the performance.
+
 
 We create noisy training data by adding Additive White Gaussian Noise (AWGN) with a signal-to-noise-ratio of $10$ to the original training examples.
 
