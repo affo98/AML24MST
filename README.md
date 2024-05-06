@@ -52,7 +52,7 @@ Accuracy scores are shown in the table below.
 
 
 The figure below shows the confusion Matrix for the AST model fine-tuned on baseline data.
-![](figures/confusion_plot_ast_baseline.png)
+![](figures/confusion_plot_baseline_ast.png)
 
 
 The figure below plots the first two principal components of all the songs in the original dataset. Large points indicates test-set songs that were misclassified by all 9 models. 
