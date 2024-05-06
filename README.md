@@ -1,11 +1,11 @@
 # AML24MST
-Thie repository code for the mini-project in Advanced Machine Learning 2024 at IT-University of COpenhagen.
+Thie repository code for the mini-project in Advanced Machine Learning 2024 at IT-University of Copenhagen.
 
 
 ## Data and Objective
 The objective of this project is to build a classifier that can tag pieces of music with a genre. 
 
-We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) which is the most-used public dataset for evaluating music genre recognition in machine learning. The dataset consists of 10 genres with 100 audio files of 30 second each.
+We use the [GTZAN Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification) which is the most-used public dataset for evaluating music genre recognition in machine learning. The dataset consists of 10 genres with 100 audio files of 30 second each. For each genre, the data is split into training (60), validation (20), and test (20).
 
 The main goals of the project is to:
 
@@ -15,10 +15,10 @@ The main goals of the project is to:
 
 ## Methods
 
-We fine-tune three pre-trained model architectures.
+We fine-tune three pre-trained model architectures to classify music genres in the GTZAN:
 
 1. CNN
-2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied.
+2. Audio Spectogram Transformer (AST) - [Paper](https://arxiv.org/abs/2104.01778): which is an attention-based vision transformer model used for audio classification. The audio is first turned into a spectogram, then projected onto an embedding space, after which a vision transformer is applied. We use a model pretrained on the [AodioSet](https://research.google.com/audioset/) consisting on a variety of audio classes including music and speech. This corresponds to the 1st model on the [GitHub from the paper](https://github.com/YuanGongND/ast/tree/master?tab=readme-ov-file). A learning rate of 5e-5 for fine-tuning. 
 4. Hubert - [Paper](https://arxiv.org/abs/2106.07447): 
 
 
