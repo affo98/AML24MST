@@ -68,7 +68,7 @@ The figure below plots the first two principal components of all the songs in th
 
 1. The model that uses raw waveforms as input (HuBERT) has overall better accuracy than the models that uses mel-spectrograms (AST and ResNet50).
 2. The transformer models (HuBERT and AST) have better accuracy than the CNN model (ResNet50).
-3. Adding noise data to the ResNet50 model improves accuracy slightly (+ .013 from baseline). Neither noisy- or generated data improved the performance of the AST. Generated data achieved the same accuracy as baseline data in the HuBERT model. None of the models had large decrease in accuracy when trained noisy or generated audio files. This alludes to the models learning feature representations that are not only artifacts of the GTZAN data but could be applied to new test sets.
+3. Adding noise data to the ResNet50 model improves accuracy slightly (+ .013 from baseline). Neither noisy- or generated data improved the performance of the AST. Generated data achieved the same accuracy as baseline data in the HuBERT model. None of the models had large decrease in accuracy when trained on noisy or generated audio files. This alludes to the models learning feature representations that are not only artifacts of the GTZAN data but could be applied to new test sets.
 
 There was a big difference in the performance across genres. Classical- and jazz music was easier for the models to classify correctly, whereas disco and rock genres were more often misclassified. When adding noisy data to the training data of the ResNet50 architechture, the correctly classified rock songs increased from 1 to 12. This raises the question of whether supervised music tagging methods could benefit from genre based pipelines. 
 
