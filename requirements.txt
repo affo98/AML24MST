@@ -1,8 +1,10 @@
 pandas
 numpy
 matplotlib
+tensorflow
 transformers
 torch 
+tqdm
 datasets
 soundfile
 librosa
